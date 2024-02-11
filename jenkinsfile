@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/rahull21/BitBucket_Site_111.git'
+                git 'https://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@github.com/rahull21/BitBucket_site_111.git'
             }
         }
         
