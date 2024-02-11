@@ -6,7 +6,6 @@ stages {
        stage('Install Dependencies') {
     steps {
         
-        sh 'virtualenv venv'
         sh'virtualenv -p python3'
         sh 'source venv/bin/activate && pip3 install -r requirements.txt'
     }
