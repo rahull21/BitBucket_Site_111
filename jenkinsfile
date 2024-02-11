@@ -4,6 +4,7 @@ pipeline {
 stages {
        stage('Install Dependencies') {
     steps {
+        sh 'pip install python 3.12.0'
         sh 'pip install venv'
         sh 'virtualenv venv'
         sh 'source venv/bin/activate && pip install -r requirements.txt'
