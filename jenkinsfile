@@ -2,11 +2,7 @@ pipeline {
     agent any
     
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://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@github.com/rahull21/BitBucket_site_111.git'
-            }
-        }
+        
         
         stage('Install Dependencies') {
             steps {
