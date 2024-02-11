@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/yourusername/your-django-project.git'
+                git 'https://github.com/rahull21/BitBucket_Site_111.git'
             }
         }
         
