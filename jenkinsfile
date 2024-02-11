@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/yourusername/your-django-project.git'
+            }
+        }
+        
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+        
+        stage('Run Tests') {
+            steps {
+                sh 'python manage.py test'
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                // Execute deployment commands here (e.g., collectstatic, migrate, etc.)
+                sh 'python manage.py collectstatic --noinput'
+                sh 'python manage.py runserver'
+                // Additional deployment steps...
+            }
+        }
+    }
+}
