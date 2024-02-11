@@ -1,0 +1,55 @@
+{% load bootstrap4 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Request for {{ access_request.repository.name }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'BitBucket_site/styles.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{% url 'index' %}">Repository List</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    {% if not request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="jumbotron">
+            <form method="post">
+                {% csrf_token %}
+                <h3 class="mb-3">Access Request for {{ access_request.repository.name }}</h3>
+                <p>User: {{ access_request.user.first_name }}</p>
+                <p>Access Type: {{ access_request.access_type }}</p>
+                <p>User Display Name: {{ access_request.first_name }}</p>
+                
+                <div class="form-group">
+                    <label for="decision">Decision:</label>
+                    <select class="form-control" name="decision" required>
+                        <option value="approve">Approve</option>
+                        <option value="deny">Deny</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLR6+URs5f5zF5Ff5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-2zFfSgt1yrjH6P8Y3FfD/x1vH5w5I5FeHk6Zd5u5F5F5F5F5F5F5F5F5F5F5F5F5F5F5" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<form method="post">
+    {% csrf_token %}
+    <label for="access_type">Access Type:</label>
+    <input type="text" name="access_type" required><br>
+    <label for="manager">Manager:</label>
+    <select name="manager" required>
+        {% for manager in managers %}
+        <option value="{{ manager.id }}">{{ manager.name }}</option>
+        {% endfor %}
+    </select><br>
+    <label for="user_display_name">User Display Name:</label>
+    <input type="text" name="user_display_name" required><br>
+    <button type="submit">Submit</button>
+</form>
